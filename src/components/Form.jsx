@@ -1,43 +1,33 @@
 export default function Form({
-  setInputText,
-  inputText,
-  setTodos,
-  todos,
+  dispatch,
+  input,
+  setInput,
+  ACTIONS,
   setStatus,
 }) {
-  const inputTextHanlder = (e) => {
-    setInputText(e.target.value);
-  };
-
-  const submitTodoHanlder = (e) => {
+  function submitHandler(e) {
     e.preventDefault();
-    setTodos([...todos, { text: inputText, completed: false, id: Date.now() }]);
-    setInputText("");
-  };
-
-  const statusHandler = (e) => {
-    setStatus(e.target.value);
-  };
+    dispatch({ type: ACTIONS.ADD_TODO, payload: { description: input } });
+    setInput("");
+  }
 
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <input
-        value={inputText}
-        onChange={inputTextHanlder}
+        onChange={(e) => setInput(e.target.value)}
+        value={input}
         type="text"
         className="todo-input"
       />
-      <button
-        onClick={(e) => {
-          submitTodoHanlder(e);
-        }}
-        className="todo-button"
-        type="submit"
-      >
+      <button className="todo-button" type="submit">
         <i className="fas fa-plus-square"></i>
       </button>
       <div className="select">
-        <select onChange={statusHandler} name="todos" className="filter-todo">
+        <select
+          onChange={(e) => setStatus(e.target.value)}
+          name="todos"
+          className="filter-todo"
+        >
           <option value="all">All</option>
           <option value="completed">Completed</option>
           <option value="uncompleted">Uncompleted</option>

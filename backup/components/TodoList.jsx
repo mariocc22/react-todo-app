@@ -1,6 +1,6 @@
 import Todo from "./Todo";
 
-export default function TodoList({ dispatch, ACTIONS, filteredTodos }) {
+export default function TodoList({ todos, setTodos, filteredTodos }) {
   return (
     <div className="todo-container">
       <ul className="todo-list">
@@ -9,8 +9,8 @@ export default function TodoList({ dispatch, ACTIONS, filteredTodos }) {
             <Todo
               todo={todo}
               key={todo.id}
-              dispatch={dispatch}
-              ACTIONS={ACTIONS}
+              setTodos={setTodos}
+              todos={todos}
             />
           );
         })}
