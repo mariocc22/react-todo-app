@@ -45,7 +45,7 @@ const App = () => {
     return { id: Date.now(), description: description, complete: false };
   }
 
-  // filterHandler
+  // filterHandler 1
   const filterHandler = () => {
     switch (status) {
       case "completed":
